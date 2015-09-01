@@ -1,0 +1,551 @@
+ngcp-rtpengine (3.3.0.0+0~mr3.8.0.0) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [2460836] remove -e argument from awk
+  * [19e0281] disable "list" NG command if glib version is too low
+  * [b49f57b] avoid DTLS role change on reinvite
+  * [d0beccb] dont break log lines when logging to stderr
+  * [8c8ff56] fix pointer const declaration and make it static
+  * [955de10] support proper DTLS shutdown and restart DTLS on FP change
+  * [6757c27] add DTLS=passive option
+  * [97b472b] dont break legacy control protocols
+  * [f826d01] make "trust address" the default behaviour
+  * [4c408e5] add --dtls-passive switch
+  * [d272e9e] add more flags to stats output
+  * [e09fbd2] dtls shutdown clears crypto context as well
+  * [91221ef] move DTLS setup logic into separate function for readability
+  * [50d1839] reset DTLS and crypto params when endpoints change
+  * [3478629] dont output error message on stun SOFTWARE attribute
+  * [a1786d6] segfault fix: ps->sfd can be null
+  * [4077225] avoid unnecessary DTLS restarts
+  * [7e72bfc] MT#10059 allow freeform interface definitions in init.d script
+  * [935487b] avoid race condition by making OpenSSL thread safe
+  * [dcfd703] deadlock fix
+  * [0113991] MT#9585 rename kernel module and all related items from MEDIAPROXY to RTPENGINE
+  * [276c7c8] report errno in log on sendmsg() error
+  * [cccb0bf] add Recommends: netcat-openbsd | netcat for CLI patch
+  * [43bcbcc] change created_from to an allocated string buffer
+  * [0e531eb] change created_from to an allocated string buffer
+  * [a8e5582] rtpengine-ctl: use $0 as name in help output
+  * [d79bcfe] remove extraneous linefeed
+  * [3cfeb5d] optionally allow broken SDPs as compile switch
+  * [458a84c] remove obsolete RH $RTP_IP6 sysconfig option
+
+  [ Frederic-Philippe Metz ]
+  * [9886de4] cdrpatch.dpatch:
+  * [947b35e] fixed_callduration_and_added_termination_reason_20141125:
+  * [ee655bd] added_milliseconds_precision_for_CDR.patch:
+  * [131c9e8] cli
+  * [a871cd7] added_address_of_invoking_proxy
+  * [5342158] added_information_of_from_to_tag:
+  * [d623710] adaptions_for_ng_protocol:
+  * [59329dd] VOIPTEST_220_delete delay
+  * [4882d91] RTPENGINE-1_total_statistics_rectl.patch:
+  * [b566581] VOIPTEST-231_session_duration_rectl_milliseconds.patch
+  * [a4168be] RTPENGINE-12_Fixed_Segmentation_fault_if_only_offer_received.patch
+
+  [ Victor Seva ]
+  * [66a5137] Allow to choose CC
+  * [f8e16b9] Add travis-ci configuration
+
+  [ sybasesql ]
+  * [b94bae8] Update rtpengine.init
+  * [08ffc9c] Update rtpengine.sysconfig
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Wed, 07 Jan 2015 21:39:28 +0100
+
+ngcp-rtpengine (3.3.0.0+0~mr3.7.0.0) unstable; urgency=low
+
+  [ Frederic-Philippe Metz ]
+  * [e77dd1a] create as many threads as cpus
+
+  [ Richard Fuchs ]
+  * [b66091b] make number of threads configurable
+  * [07b6ea4] document new CLI flags
+  * [a5c55fc] add NUM_THREADS to init scripts
+  * [ba5ed24] kernel module didn't handle DTLS packets properly
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 30 Oct 2014 17:30:10 +0100
+
+ngcp-rtpengine (3.3.0.0+0~mr3.6.0.0) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [062256b] segfault fix for DTLS protocol errors
+  * [b0c7efb] duplicate x509 in mem for delayed verification
+  * [9ecb7da] allow for protocol renegotiation
+  * [759ea60] adding some debug messages
+  * [e1cfc19] fix incorrect port allocations
+  * [e7aa743] change default a=crypto: tag from zero to one
+  * [e883f57] better support protocol switching within a call
+  * [4bf2ec7] correct data type for key lifetime
+  * [b6ff15c] remove unnecessary a=inactive for zero-port media
+  * [964b644] don't skip setting stream to actpass when not using sdes
+  * [681b2c1] version reporting: use git branch and commit if available
+  * [77829f9] split very long log lines into smaller pieces
+  * [9d001e3] fix segfault if NG protocol is not used
+  * [ec21806] use default TOS if not using NG protocol
+  * [58940b5] change stun log levels
+  * [8f4e345] increase default log level for debug builds
+  * [e0957d1] fix TCP/UDP protocol stream output
+  * [50f2bfb] allow for fqdn in o= line
+  * [73b56db] Update CentOS definitions
+  * [1f4f0d6] implement delayed call/branch deletion
+  * [8a8dee5] support sdes key change in simulations
+  * [5e129dd] brevity
+  * [16b42fb] Switch around internal fromtag/totag/endpoint representation
+  * [fe65671] simple port randomizer
+  * [65812fa] limit the number of times the receive loop can run without breaking
+  * [c0f8196] implement detection of duplicate packets to catch and avoid forwarding loops
+  * [fccad69] segfault fix for tcp status command
+  * [54f903d] bugfixes for legacy control protocols
+  * [4d00147] s/force_relay/force-relay/
+  * [0cbb466] paving the way to multi-interface support
+  * [513ac44] incorporate new local-interface infrastructure into appropriate places
+  * [e365572] receive local address from kernel and use it for outgoing packets
+  * [45dee75] support specifying interfaces to use in control protocols
+  * [1a39b86] readme update
+  * [ddcf0f3] update init.d file
+  * [d1165df] update EL specs/init file
+  * [e830bf5] update for redis module
+  * [af9625d] make multi-homing thread safe
+  * [34ca29b] dont escape exclamation points in sh scripts
+  * [3de07be] s/MEDIAPROXY/RTPENGINE/
+  * [c1d7a52] MT#9065 daemon: don't restart if kernel is needed but not yet installed
+  * [6379883] fix str_hash() for archs enforcing aligned pointers
+  * [4658526] implement a crude log limiter
+  * [6cf604d] fix comparison between int and bitfield
+
+  [ Camille Oudot ]
+  * [47b0252] fix null/empty string check in ng_call_stats
+  * [a51db71] new command: 'list' to retreive the list of active call-ids
+  * [6005d14] XMLRPC notifications: more formats
+  * [81d8616] list command: several fixes + documentation
+  * [faf3e22] logging: choose the log facility from the command line, or log to stderr
+
+  [ Victor Seva ]
+  * [f562844] MT8741 remove init script tricks
+
+  [ Dipak Malla ]
+  * [bfb41d1] Fixed linking error in Makefile
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 09 Oct 2014 16:54:38 +0200
+
+ngcp-rtpengine (3.3.0.0+0~mr3.5.0.0) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [cbe1f80] possible segfault fix
+  * [ba1bd04] silence warning for kernelizing rtcp
+  * [c9a101c] docs update
+  * [ca138c3] fix kernel module debug output
+  * [aa4f2fa] document SIGUSR1/2
+  * [0bc4d3c] kernel srtp fix
+  * [be500e1] prefer space to underscore in bencode
+  * [c730895] update "query" output docs
+  * [56ca361] sync bencode from kamailio
+  * [b0c0e39] allow hyphenated versions of NG protocol flags
+  * [a7784f5] try to fix null c= address issue
+  * [2e9ae75] remove needless assertion
+  * [e381e10] configurable per-call TOS value
+  * [69dec02] fix inappropriate locking sequenece
+  * [68d94c6] add --TOS to ng-client
+  * [1564099] fix possible deadlock
+  * [2a38b51] better ICE priority calc for non-RFC clients
+  * [f6290f3] sample CLI usage for ng-client
+  * [d37d385] properly handle unknown transport protocols
+  * [9cbe157] properly support the udptl protocol
+
+  [ Victor Seva ]
+  * [02832db] MT#6485 detect container environment
+  * [eb9dbd8] MT#6485 add proper checks for virt-identify
+  * [c7e3911] MT#6485 add no_ngcp script to remove NGCP dependences
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Thu, 10 Jul 2014 15:36:42 +0200
+
+ngcp-rtpengine (3.3.0.0+0~mr3.4.0.0) unstable; urgency=low
+
+  * New release.
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Mon, 26 May 2014 16:00:30 +0200
+
+ngcp-rtpengine (3.3.0.0+0~mr3.3.0.0) unstable; urgency=medium
+
+  [ Victor Seva ]
+  * [1b486a7] MT#6449 add -dev packages needed to build something with ngcp-librtpengine-dev
+  * [d025f4b] MT#6449 fix typo
+
+  [ Richard Fuchs ]
+  * [f638f36] replace implicit bit fields with explicit ones
+  * [5faf5e6] switch to C99 standard
+  * [05e429c] C99 inlining rules
+  * [c372019] re-enable redis module compatibility checks
+  * [b6643e3] eliminate redis_uuid
+  * [ec3daab] change name of redis plugin file
+  * [91cae48] add core.* files to "make clean" target
+  * [7c0cc4c] updates for redis support
+  * [e19ca0a] introduce log level flags (LOG_FLAG_RESTORE)
+  * [e2901eb] update README (primarily name change)
+  * [5d49022] set media SDES flag when appropriate
+  * [b132d80] redo flags to have a "shared flags namespace"
+  * [aa5bae9] implement experimental passthrough relay mode
+  * [9f1696d] use srtp<>srtp transcode if either side uses dtls
+  * [838917b] compile fixes for older gcc versions
+  * [88dfeee] fix compiler warning
+  * [6c1cb06] fix relay ICE candidate type for RTP candidate
+  * [09b9303] fix ICE priority calculation
+  * [92cab83] remove unused variable
+  * [011a426] restore query/stats output
+  * [0a42f4a] fix timeout handling for silenced streams
+  * [940030d] support kernel forward of non-rtp packets
+  * [7d82016] implement source address checking - kernel part
+  * [bb84ea5] implement explicit warning when kernel support is missing
+  * [b9cf00b] obsolete the "symmetric" flag
+  * [2036322] parse "strict source" and "media handover" flags
+  * [eb59af9] more verbose timeout log message
+  * [b8a39be] avoid log message redundancy
+  * [4ded03d] implement media-handover and strict-source logic
+  * [b905e73] included expected source in /proc output
+  * [4fb151a] /proc output indentation fix
+  * [3030324] sink must also be unlocked when peer address changes
+  * [e9ff918] make call_destroy() global
+  * [40790a7] whitespace cleanup & remove obsolete code
+
+  [ Michael Prokop ]
+  * [8e11a60] MT#6511 Bump Standards-Version to 3.9.5
+
+  [ Juha Heinanen ]
+  * [2dae4fb] support ICE=force_relay flag
+  * [5198233] make ICE=force_relay leave SDP endpoint details alone
+
+  [ Pablo Ruiz García ]
+  * [cf76901] Do not try to install & initialize module if in kernel suppor has been specifically disabled (ie. TABLE < 0)
+
+ -- Victor Seva <vseva@sipwise.com>  Mon, 26 May 2014 12:23:29 +0200
+
+ngcp-rtpengine (2.9.9) unstable; urgency=low
+
+  * Rename from mediaproxy-ng to rtpengine
+  * Complete rewrite of internal media streams handling
+  * Support for DTLS-SRTP
+  * Support for unBUNDLE
+  * Improved support for rtcp-mux
+  * WIP
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 04 Mar 2014 11:06:23 -0500
+
+ngcp-mediaproxy-ng (2.4.0.0+0~mr3.3.0.0) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [9edb5a3] attempt to lower idle CPU usage when reading list/blist
+  * [50573f4] bit field/array fixes
+
+ -- Alexander Lutay <alutay@sipwise.com>  Fri, 21 Mar 2014 15:26:25 +0100
+
+ngcp-mediaproxy-ng (2.3.6+0~mr3.3) unstable; urgency=low
+
+  * fix IPv4 TOS
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Mon, 24 Feb 2014 12:40:53 -0500
+
+ngcp-mediaproxy-ng (2.3.5+0~mr3.3) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [eec41b8] fix mem leak
+  * [3c4b387] fix the "media address" parameter to comply with the docs
+  * [0f99aea] fix simulator rtcp-mux bug
+
+  [ Sipwise Jenkins Builder ]
+
+ -- Sipwise Jenkins Builder <jenkins@sipwise.com>  Sat, 01 Feb 2014 19:48:40 +0100
+
+ngcp-mediaproxy-ng (2.3.5) unstable; urgency=low
+
+  * update desired address family (based on "direction") when branching
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 07 Jan 2014 16:09:50 -0500
+
+ngcp-mediaproxy-ng (2.3.4) unstable; urgency=low
+
+  * Kernel module compile fixes for kernels >= 3.10
+  * Re-learn peer addresses after each signalling
+  * Fix erroneous double lookup detection
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 12 Dec 2013 05:48:12 -0500
+
+ngcp-mediaproxy-ng (2.3.3) unstable; urgency=low
+
+  * fix possible segfault on incorrect sp/SP flag usage
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Wed, 06 Nov 2013 10:27:10 -0500
+
+ngcp-mediaproxy-ng (2.3.2) unstable; urgency=low
+
+  [ Richard Fuchs ]
+  * [7d82cd2] updating README
+  * [2f0ad34] update init script to "provide itself"
+  * [97d3414] fix bug when trust-address isnt given
+  * [5fa1c1e] dont fail on failed rm
+  * [13ad042] rename some keys in the ng protocol (replace dash with space) but retain compatibility
+  * [bbc5339] implement and document ng "media address"
+  * [7e88b38] change port range defaults to match docs
+  * [d63df52] merge bencode fix from kamailio source
+  * [1a83499] fix incorrect source address of STUN binding responses
+  * [f023ab4] update init script to handle ipv6 tables properly
+  * [ace8130] merge bencode fix from kamailio source
+  * [e90a7ec] change port range defaults to match docs
+  * [b18d14e] Implement non-fatal warnings in NG replies and use them in "delete"
+    (Closes: #12)
+
+  [ Peter Dunkley ]
+  * [130d485] Updated Makefiles and added compilation instructions to work with Enterprise Linux (tested on CentOS 6.4 64-bit).
+  * [c7c3ee0] First go at creating a .spec file to build mediaproxy-ng for Enterprise Linux
+  * [44fc40f] .spec file now builds iptables plugin. Kernel module (using DKMS) to follow.
+  * [e322989] Updated documentation for Enterprise Linux
+  * [6830b16] .spec file now builds kernel module using DKMS
+  * [ce9ac35] Updated readme for Enterprise Linux
+  * [c0572a0] More tidying of EL docs
+  * [f16afa8] Added init.d script and config file
+  * [3468c17] Fixes to init.d script and .spec
+  * [10d991c] Updated documentation for Enterprise Linux
+  * [7a14c45] updated to support new --log-level argument and use a new iptables chain
+  * [454f65f] fix to iptables usage in init.d script
+  * [dfe9cfb] updated rel in .spec file
+  * [829e835] Updated to use DKMS from EPEL for Enterprise Linux builds
+
+  [ Jon Bonilla ]
+  * [ffd3231] Make mediaproxy use a new iptables chain
+
+  [ oboisti ]
+  * [d74c24f] added --log-level option and USR1 and USR2 signals to update log level on the fly
+
+  [ Juha Heinanen ]
+  * [e84c2f5] added log level handling to debian default file and init script
+
+  [ Michael Prokop ]
+  * [a1d21dc] MT#4569 ngcp-mediaproxy-ng-daemon does not need to Pre-Depend on ngcp-mediaproxy-ng-kernel-dkms.
+    Thanks to Peter Dunkley for reporting (Closes: #9)
+
+ -- Victor Seva <vseva@sipwise.com>  Tue, 29 Oct 2013 10:37:41 +0100
+
+ngcp-mediaproxy-ng (2.3.1) unstable; urgency=low
+
+  * Enforce stream correlation against same-numbered old streams
+  * Fix incorrect source address of STUN binding responses
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Mon, 21 Oct 2013 11:10:20 -0400
+
+ngcp-mediaproxy-ng (2.3.0) unstable; urgency=low
+
+  * Implements RFC 3711 (SRTP, RTP/SAVP), RFC 4585 (RTP/AVPF),
+    RFC 4568 (SDES), RFC 5124 (RTP/SAVPF)
+  * Supports userspace and kernelspace bridging between RTP/AVP,
+    RTP/AVPF, RTP/SAVP and RTP/SAVPF in arbitrary combinations
+  * Supoprt for some additional SDP attributes
+  * Drops support for hosts without IPv6 stack
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 02 Jul 2013 15:07:30 -0400
+
+ngcp-mediaproxy-ng (2.2.1) unstable; urgency=low
+
+  * Handle zero ports and addresses in NG protocol
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 28 Mar 2013 10:14:00 -0400
+
+ngcp-mediaproxy-ng (2.2.0) unstable; urgency=low
+
+  * Adds support for the new NG protocol
+  * Support ICE when running on NG protocol
+  * STUN support for ICE support
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Wed, 06 Feb 2013 14:08:13 -0500
+
+ngcp-mediaproxy-ng (2.1.1) unstable; urgency=low
+
+  * Don't reject lookups with unknown via-branches, instead
+    remember the via-branches
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 18 Jan 2013 10:11:06 -0500
+
+ngcp-mediaproxy-ng (2.1.0) unstable; urgency=low
+
+  * Better logging for XMLRPC calls
+  * Implement UDP Q command for the $rtpstat pseudo-variable
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Mon, 10 Dec 2012 08:53:14 -0500
+
+ngcp-mediaproxy-ng (2.0.2) unstable; urgency=low
+
+  * Don't fail on zero port in TCP controller
+  * Fixes for locking problems and race conditions
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 05 Oct 2012 10:33:15 -0400
+
+ngcp-mediaproxy-ng (2.0.1) unstable; urgency=low
+
+  * re-add init stuff
+
+ -- Jon Bonilla <jbonilla@sipwise.com>  Fri, 24 Aug 2012 01:15:43 +0200
+
+ngcp-mediaproxy-ng (2.0.0) unstable; urgency=low
+
+  * Support XMLRPC callback to B2BUA/SBC to break calls upon RTP timeout
+  * Split redis HA code into module
+  * Support zero-length UDP packets on RTP sockets
+  * Support large RTP packets (up to 8192 bytes)
+  * Write packet statistics to log on call termination
+  * Don't trigger call timeout when there's RTCP traffic
+  * Supply -dbg package [mprokop]
+  * Drop poll() in favor of epoll() for better performance
+  * Implement multi-threaded operation
+  * Fixes traffic class setting for IPv6
+  * Fix bug that messed up packet stats for in-kernel streams
+  * Various minor performance tweaks and bug fixes
+  * Fix setting IPv4 source address when running with IPv6 enabled
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 10 Aug 2012 10:21:53 -0400
+
+ngcp-mediaproxy-ng (1.6.6) unstable; urgency=low
+
+  * Support userspace-only operation mode
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Wed, 16 May 2012 09:33:18 -0400
+
+ngcp-mediaproxy-ng (1.6.5) unstable; urgency=low
+
+  * Fix daemon failing to correctly interpret "delete full call" message
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 04 May 2012 11:21:11 -0400
+
+ngcp-mediaproxy-ng (1.6.4) unstable; urgency=low
+
+  * Fix segfault
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 06 Mar 2012 09:51:07 -0500
+
+ngcp-mediaproxy-ng (1.6.3) unstable; urgency=low
+
+  * Fix the UDP control protocol
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 06 Mar 2012 07:12:47 -0500
+
+ngcp-mediaproxy-ng (1.6.2) unstable; urgency=low
+
+  * Check from/to tags in delete message
+  * Implement via-branch handling
+  * Don't strip debug symbols
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Mon, 05 Mar 2012 04:31:07 -0500
+
+ngcp-mediaproxy-ng (1.6.1) unstable; urgency=low
+
+  * Correctly remember address family across re-invites etc
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Wed, 08 Feb 2012 10:34:33 -0500
+
+ngcp-mediaproxy-ng (1.6.0) unstable; urgency=low
+
+  * Add full IPv6 support
+  * Attempt to handle unparsable proxy commands as much as possible
+  * Improve human-readable output in /proc
+  * Fix handling of calls with multiple media streams
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 26 Jan 2012 07:30:25 -0500
+
+ngcp-mediaproxy-ng (1.5.3) unstable; urgency=low
+
+  * Fix incorrect handling of lookups received without prior request
+  * Fix a long-standing bug that caused from/to tags to be ignored when using UDP protocol
+  * Properly timeout and cleanup UDP cookies
+  * Fix table 0 not showing up in /proc/mediaproxy/list
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 08 Dec 2011 11:05:30 -0500
+
+ngcp-mediaproxy-ng (1.5.2) unstable; urgency=low
+
+  * Fix bad tagging
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 20 Sep 2011 10:41:42 -0400
+
+ngcp-mediaproxy-ng (1.5.1) unstable; urgency=low
+
+  * Return a dummy/error reply over UDP when a call doesn't exist, so
+    kamailio doesn't think we're dead
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 20 Sep 2011 10:41:42 -0400
+
+ngcp-mediaproxy-ng (1.5.0) unstable; urgency=low
+
+  * Rework port re-use logic so it never opens new ports when it doesn't
+    need to.
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 15 Sep 2011 10:42:57 -0400
+
+ngcp-mediaproxy-ng (1.4.2) unstable; urgency=low
+
+  * Slightly increase syslog verbosity
+  * Fix obscure 3-way call connect issue
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 02 Sep 2011 17:09:38 -0400
+
+ngcp-mediaproxy-ng (1.4.1) unstable; urgency=low
+
+  * Fix a memory leak
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Wed, 10 Aug 2011 17:01:56 -0400
+
+ngcp-mediaproxy-ng (1.4.0) unstable; urgency=low
+
+  * Support HA through persistent Redis storage
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Fri, 10 Jun 2011 13:50:50 -0400
+
+ngcp-mediaproxy-ng (1.3.5) unstable; urgency=low
+
+  * Fix dst reference count issues causing kernel warnings under some circumstances
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 19 May 2011 13:43:16 -0400
+
+ngcp-mediaproxy-ng (1.3.4) unstable; urgency=low
+
+  * Make the daemon more aggressive with invalidating peer information
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Thu, 05 May 2011 16:08:31 -0400
+
+ngcp-mediaproxy-ng (1.3.3) unstable; urgency=low
+
+  * Add --advertised-ip to defaults file.
+
+ -- Andreas Granig <agranig@sipwise.com>  Wed, 04 May 2011 23:26:30 +0200
+
+ngcp-mediaproxy-ng (1.3.2) unstable; urgency=low
+
+  * Introduce --advertised-ip parameter
+  * Minor code & help text cleanups
+
+ -- Richard Fuchs <rfuchs@sipwise.com>  Tue, 03 May 2011 17:20:11 -0400
+
+ngcp-mediaproxy-ng (1.3.1) unstable; urgency=low
+
+  * dkms postinst: do not execute init script if it is not present yet.
+
+ -- Michael Prokop <mprokop@sipwise.com>  Fri, 29 Apr 2011 17:18:41 +0200
+
+ngcp-mediaproxy-ng (1.3.0) unstable; urgency=low
+
+  * Release for 2.2
+  * Fixed version number to align with old, non-debianized versioning scheme.
+
+ -- Andreas Granig <agranig@sipwise.com>  Fri, 29 Apr 2011 12:01:56 +0200
+
+ngcp-mediaproxy-ng (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Andreas Granig <agranig@sipwise.com>  Tue, 26 Apr 2011 18:55:01 +0200

@@ -1,0 +1,88 @@
+From 81247ec27ca17d48ce7fa967aad880a1e06d13d5 Mon Sep 17 00:00:00 2001
+From: Varadhan <varadhan@cem-solutions.net>
+Date: Mon, 13 Jul 2015 21:21:41 +0530
+Subject: [PATCH] sdp alt remove flag support added
+
+---
+ daemon/call_interfaces.c |    8 ++++++++
+ daemon/sdp.c             |    9 +++++++++
+ daemon/sdp.h             |    3 ++-
+ 3 files changed, 19 insertions(+), 1 deletions(-)
+
+diff --git a/daemon/call_interfaces.c b/daemon/call_interfaces.c
+index 67ce881..e6b09e8 100644
+--- a/daemon/call_interfaces.c
++++ b/daemon/call_interfaces.c
+@@ -549,6 +549,14 @@ static void call_ng_process_flags(struct sdp_ng_flags *out, bencode_item_t *inpu
+ 		bencode_get_str(it->sibling, &out->received_from_address);
+ 	}
+ 
++	if (bencode_dictionary_get_str(input, "alt", &s)) {
++		if (!str_cmp(&s, "remove"))
++			out->alt_remove = 1;
++		else
++			ilog(LOG_WARN, "Unknown 'alt' flag encountered: '"STR_FORMAT"'",
++					STR_FMT(&s));
++	}
++
+ 	if (bencode_dictionary_get_str(input, "ICE", &s)) {
+ 		if (!str_cmp(&s, "remove"))
+ 			out->ice_remove = 1;
+diff --git a/daemon/sdp.c b/daemon/sdp.c
+index 497adc7..20c0b1f 100644
+--- a/daemon/sdp.c
++++ b/daemon/sdp.c
+@@ -169,6 +169,7 @@ struct sdp_attribute {
+ 		ATTR_MID,
+ 		ATTR_FINGERPRINT,
+ 		ATTR_SETUP,
++		ATTR_ALT,
+ 	} attr;
+ 
+ 	union {
+@@ -678,6 +679,8 @@ static int parse_attribute(struct sdp_attribute *a) {
+ 		case 3:
+ 			if (!str_cmp(&a->name, "mid"))
+ 				a->attr = ATTR_MID;
++			if (!str_cmp(&a->name, "alt"))
++				a->attr = ATTR_ALT;
+ 			break;
+ 		case 4:
+ 			if (!str_cmp(&a->name, "rtcp"))
+@@ -1348,6 +1351,9 @@ static int process_session_attributes(struct sdp_chopper *chop, struct sdp_attri
+ 				if (attr->u.group.semantics == GROUP_BUNDLE)
+ 					goto strip;
+ 				break;
++			case ATTR_ALT:
++				if(flags->alt_remove)
++					goto strip ;
+ 
+ 			default:
+ 				break;
+@@ -1424,6 +1430,9 @@ static int process_media_attributes(struct sdp_chopper *chop, struct sdp_media *
+ 					goto strip;
+ 				break;
+ 
++			case ATTR_ALT:
++				if(flags->alt_remove)
++					goto strip;
+ 			default:
+ 				break;
+ 		}
+diff --git a/daemon/sdp.h b/daemon/sdp.h
+index 272c4ea..5935afd 100644
+--- a/daemon/sdp.h
++++ b/daemon/sdp.h
+@@ -32,7 +32,8 @@ struct sdp_ng_flags {
+ 	    rtcp_mux_reject:1,
+ 	    strict_source:1,
+ 	    media_handover:1,
+-	    dtls_passive:1;
++	    dtls_passive:1,
++	    alt_remove:1;
+ };
+ 
+ struct sdp_chopper {
+-- 
+1.7.1
+
