@@ -1,5 +1,5 @@
 CC?=gcc
-CFLAGS		= -O2 -Wall -shared -fPIC
+CFLAGS		+= -O2 -Wall -shared -fPIC
 ifneq ($(RTPENGINE_VERSION),)
   CFLAGS	+= -DRTPENGINE_VERSION="\"$(RTPENGINE_VERSION)\""
 else
@@ -11,9 +11,9 @@ else
   endif
 endif
 
-XTABLES		= $(shell test -e /usr/include/xtables.h && echo 1)
-IPTABLES	= $(shell test -e /usr/include/iptables.h && echo 1)
-IP6TABLES	= $(shell test -e /usr/include/ip6tables.h && echo 1)
+XTABLES		= $(shell test -e $(SYSROOT)/usr/include/xtables.h && echo 1)
+IPTABLES	= $(shell test -e $(SYSROOT)/usr/include/iptables.h && echo 1)
+IP6TABLES	= $(shell test -e $(SYSROOT)/usr/include/ip6tables.h && echo 1)
 
 WORK=0
 
