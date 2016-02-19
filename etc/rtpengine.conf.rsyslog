@@ -1,1 +1,1 @@
-local1.warn                            -/var/log/rtpengine.log
+local1.*                            -/var/log/rtpengine.log

@@ -325,7 +325,7 @@ next:
            ilog(LOG_INFO, "Could currently not read CLI commands. Reason:%s\n", strerror(errno));
        }
        inlen += readbytes;
-   } while (readbytes > 0);
+   } while (readbytes > 0 && !strchr(inbuf,'\n'));
 
    ilog(LOG_INFO, "Got CLI command:%s\n",inbuf);
 
