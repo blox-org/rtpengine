@@ -299,6 +299,7 @@ static void cli_incoming(int fd, void *p, uintptr_t u) {
    char inbuf[MAXINPUT]; memset(&inbuf,0,MAXINPUT);
    int inlen = 0, readbytes = 0;
    int rc=0;
+   char *nl = NULL ;
 
    mutex_lock(&cli->lock);
 next:
@@ -325,7 +326,9 @@ next:
            ilog(LOG_INFO, "Could currently not read CLI commands. Reason:%s\n", strerror(errno));
        }
        inlen += readbytes;
-   } while (readbytes > 0 && !strchr(inbuf,'\n'));
+   } while (readbytes > 0 && !(nl=strchr(inbuf,'\n')));
+
+   if(nl) *nl = '\0' ; // remove the newline
 
    ilog(LOG_INFO, "Got CLI command:%s\n",inbuf);
 
